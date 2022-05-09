@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -19,10 +20,13 @@ export default function App() {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
-  
+
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} type={type}>
+        <TouchableOpacity style={styles.iconContainer}>
+          <AntDesign name="camera" size={70} style={styles.icon}/>
+        </TouchableOpacity>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
@@ -40,14 +44,23 @@ export default function App() {
     </View>
   );
 
-  
+
 };
 const styles = {
   container: {
-    flex: 1,
+    flex: 1
   },
   camera: {
     flex: 1,
+  },
+  iconContainer: {
+    position: 'absolute',
+    top: 750,
+    left: 170
+    
+  },
+  icon: {
+    color: 'white',
   },
   buttonContainer: {
     flex: 1,
@@ -65,3 +78,4 @@ const styles = {
     color: 'white',
   }
 };
+
